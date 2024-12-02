@@ -5,11 +5,13 @@ import {
   createRoutesFromElements,
   RouterProvider,
 } from "react-router-dom";
+import { useRouteError, useLocation } from "react-router-dom";
 import ReactDOM from "react-dom/client";
 import React from "react";
+
 import App from "./App";
 import ErrorProvoker from "./ErrorProvoker";
-import { useRouteError, useLocation } from "react-router-dom";
+import Images from "./Images";
 
 function ErrorPage() {
   const error = useRouteError();
