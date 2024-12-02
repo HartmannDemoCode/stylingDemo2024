@@ -9,7 +9,7 @@ import ReactDOM from "react-dom/client";
 import React from "react";
 import App from "./App";
 import ErrorProvoker from "./ErrorProvoker";
-import { useRouteError } from "react-router-dom";
+import { useRouteError, useLocation } from "react-router-dom";
 
 function ErrorPage() {
   const error = useRouteError();
@@ -27,10 +27,12 @@ function ErrorPage() {
 }
 
 function Error404Page() {
+  const location = useLocation();
   return (
     <div id="error-404">
       <h1>404</h1>
       <p>Sorry, the page you are looking for does not exist.</p>
+      <p>No page on {location.pathname}</p>
     </div>
   );
 }
@@ -48,6 +50,7 @@ const router = createBrowserRouter(
     <Route path="/" element={<App />}  >
       <Route index element={<Content/>} errorElement={<ErrorPage/>}/>
       <Route path="error" element={<ErrorProvoker/>} errorElement={<ErrorPage/>}/>
+      <Route path="images" element={<Images/>} errorElement={<ErrorPage/>}/>
       <Route path="*" element={<Error404Page />} />
     </Route>
   )
