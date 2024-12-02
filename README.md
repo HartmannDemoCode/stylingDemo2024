@@ -1,4 +1,6 @@
-# Show how errors are handled in React Applications
+# Show Styling with Styled Components and Error Handling in React
+- All styling in App.jsx
+
 ## 3 types of errors
 1. **JS runtime errors**: These are errors that occur when the code is running. These are the most common type of errors and are usually caused by a mistake in the code.
 2. **Network errors**: These are errors that occur when the application is trying to communicate with a server. These errors are usually caused by a problem with the network connection.
