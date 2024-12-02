@@ -1,6 +1,6 @@
-import React from "react";
+import React, {useEffect} from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Outlet } from "react-router-dom"; // Assuming you're using Outlet for nested routes
 import "./App.css";
 
@@ -89,11 +89,21 @@ const ErrorBanner = styled.div`
 const App = () => {
   const [errorMessage, setErrorMessage] = React.useState(null);
   const [showRenderError, setShowRenderError] = React.useState(false);
+  // Use useLocation to listen for route changes
+  const location = useLocation();
+  const navigate = useNavigate();
+
+
+  // Reset error message on route change
+  useEffect(() => {
+    setErrorMessage(null);
+    setShowRenderError(false);
+  }, [location]);
 
   return (
     <div>
       <Header>
-        <Logo>
+        <Logo onClick={()=>navigate('/')}>
           <LogoImg
             src="https://neh.kea.dk/images/logos/cphbusiness_neg.png"
             alt="Logo"
@@ -109,13 +119,15 @@ const App = () => {
 
       <Content>
         <LeftMenu>
-          <LeftMenuItem to="/articles">Articles</LeftMenuItem>
+          <LeftMenuItem to="/error">Error handling</LeftMenuItem>
           <LeftMenuItem to="/images">Images</LeftMenuItem>
           <LeftMenuItem to="/stories">Stories</LeftMenuItem>
         </LeftMenu>
         <MainContent>
           {errorMessage && <ErrorBanner>{errorMessage}</ErrorBanner>}
-          <Outlet context={{setErrorMessage, setShowRenderError, showRenderError}} />
+          <Outlet
+            context={{ setErrorMessage, setShowRenderError, showRenderError }}
+          />
         </MainContent>
       </Content>
     </div>

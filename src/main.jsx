@@ -47,7 +47,7 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}  >
       <Route index element={<Content/>} errorElement={<ErrorPage/>}/>
-      <Route path="articles" element={<ErrorProvoker/>} errorElement={<ErrorPage/>}/>
+      <Route path="error" element={<ErrorProvoker/>} errorElement={<ErrorPage/>}/>
       <Route path="*" element={<Error404Page />} />
     </Route>
   )
